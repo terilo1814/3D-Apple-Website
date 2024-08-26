@@ -25,6 +25,8 @@ This is a clone of Apple's iPhone 15 Pro website using React.js and TailwindCSS.
 and many more, including code architecture and reusability
 
 
+<a>https://github.com/pmndrs/gltfjsx?tab=readme-ov-file</a>
+ <p>It is used to convert 3D models in the GLTF (GL Transmission Format) or GLB (binary version of GLTF) format into JSX components that can be used in React applications, specifically with libraries like @react-three/fiber.</p>
 
 
 
