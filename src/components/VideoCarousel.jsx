@@ -69,8 +69,8 @@ const VideoCarousel = () => {
                 window.innerWidth < 760
                   ? "10vw" // mobile
                   : window.innerWidth < 1200
-                  ? "10vw" // tablet
-                  : "4vw", // laptop
+                    ? "10vw" // tablet
+                    : "4vw", // laptop
             });
 
             // set the background color of the progress bar
@@ -100,11 +100,14 @@ const VideoCarousel = () => {
 
       // update the progress bar
       const animUpdate = () => {
-        anim.progress(
-          videoRef.current[videoId].currentTime /
-            hightlightsSlides[videoId].videoDuration
-        );
+        const videoElement = videoRef.current[videoId];
+        if (videoElement) { // Check if videoElement exists
+          anim.progress(
+            videoElement.currentTime / hightlightsSlides[videoId].videoDuration
+          );
+        }
       };
+
 
       if (isPlaying) {
         // ticker to update the progress bar
@@ -167,9 +170,8 @@ const VideoCarousel = () => {
                 <video
                   id="video"
                   playsInline={true}
-                  className={`${
-                    list.id === 2 && "translate-x-44"
-                  } pointer-events-none`} //nullify user interaction
+                  className={`${list.id === 2 && "translate-x-44"
+                    } pointer-events-none`} //nullify user interaction
                   preload="auto"
                   muted
                   ref={(el) => (videoRef.current[i] = el)}
@@ -200,35 +202,35 @@ const VideoCarousel = () => {
       </div>
 
       <div className="relative flex-center mt-10">
-			<div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
-			  {videoRef.current.map((_, i) => (
-				<span
-				  key={i}
-				  className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
-				  ref={(el) => (videoDivRef.current[i] = el)}
-				>
-				  <span
-					className="absolute h-full w-full rounded-full"
-					ref={(el) => (videoSpanRef.current[i] = el)}
-				  />
-				</span>
-			  ))}
-			</div>
+        <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
+          {videoRef.current.map((_, i) => (
+            <span
+              key={i}
+              className="mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer"
+              ref={(el) => (videoDivRef.current[i] = el)}
+            >
+              <span
+                className="absolute h-full w-full rounded-full"
+                ref={(el) => (videoSpanRef.current[i] = el)}
+              />
+            </span>
+          ))}
+        </div>
 
-				<button className="control-btn">
-				  <img
-					src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
-					alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
-					onClick={
-					  isLastVideo
-						? () => handleProcess("video-reset")
-						: !isPlaying
-						? () => handleProcess("play")
-						: () => handleProcess("pause")
-					}
-				  />
-				</button>
-		
+        <button className="control-btn">
+          <img
+            src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
+            alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
+            onClick={
+              isLastVideo
+                ? () => handleProcess("video-reset")
+                : !isPlaying
+                  ? () => handleProcess("play")
+                  : () => handleProcess("pause")
+            }
+          />
+        </button>
+
       </div>
     </>
   );
