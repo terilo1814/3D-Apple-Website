@@ -100,12 +100,10 @@ const VideoCarousel = () => {
 
       // update the progress bar
       const animUpdate = () => {
-        const videoElement = videoRef.current[videoId];
-        if (videoElement) { // Check if videoElement exists
-          anim.progress(
-            videoElement.currentTime / hightlightsSlides[videoId].videoDuration
-          );
-        }
+        anim.progress(
+          videoRef.current[videoId].currentTime /
+            hightlightsSlides[videoId].videoDuration
+        );
       };
 
 
